@@ -8,8 +8,8 @@ end
 
 Vagrant.configure(2) do |config|
   config.vm.box = "modernIE/w7-ie9"
-
   config.vm.box_check_update = false
+  config.vm.network "forwarded_port", guest: 8888, host: 8888  # Fiddler2 port
 
   config.vm.provider "virtualbox" do |vb|
     vb.gui = true
