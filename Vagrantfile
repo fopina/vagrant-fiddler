@@ -23,4 +23,8 @@ Vagrant.configure(2) do |config|
     slmgr /rearm
   SHELL
   config.vm.provision :reload
+
+  # ToDo: fix certificate installation URL (because of port forwarding instead of bridged network)
+  # http://docs.telerik.com/fiddler/Configure-Fiddler/Tasks/UseFiddlerAsReverseProxy
+  # if (oSession.host.toLowerCase() == "webserver:8888") oSession.host = "webserver:80";
 end
