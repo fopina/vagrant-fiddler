@@ -20,9 +20,7 @@ Vagrant.configure(2) do |config|
   config.vm.provision "rearm", type: "shell", inline: <<-SHELL
     slmgr /rearm
   SHELL
-
   config.vm.provision :reload
-
-  # Download and install fiddler
-  # https://d585tldpucybw.cloudfront.net/docs/default-source/fiddler/fiddler2setup.exe
+  config.vm.provision "install", type: "shell", path: "scripts/install_fiddler.ps1"
+  config.vm.provision "setup", type: "shell", path: "scripts/setup_fiddler.ps1"
 end
