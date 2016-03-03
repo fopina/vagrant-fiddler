@@ -1,7 +1,7 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-required_plugins = %w( vagrant-reload vagrant-triggers )
+required_plugins = %w( vagrant-reload )
 required_plugins.each do |plugin|
   system "vagrant plugin install #{plugin}" unless Vagrant.has_plugin? plugin
 end
@@ -40,9 +40,9 @@ Vagrant.configure(2) do |config|
   SHELL
   config.vm.provision :reload
 
-  config.trigger.after [:up, :reload, :resume] do
-    @machine.ui.success("Fiddler2 machine is now running!")
-    @machine.ui.success("Configure your devices to use this host machine's IP/name with port 8888 as an HTTP/HTTPS proxy")
-    @machine.ui.success("After you set up the device with the proxy, you can access http://my.fiddler to install Fiddler root certificate")
-  end
+  config.vm.post_up_message = "
+  Fiddler2 machine is now running!
+  Configure your devices to use this host machine's IP/name with port 8888 as an HTTP/HTTPS proxy
+  After you set up the device with the proxy, you can access http://my.fiddler to install Fiddler root certificate
+  "
 end
