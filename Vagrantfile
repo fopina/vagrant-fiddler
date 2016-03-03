@@ -13,6 +13,12 @@ Vagrant.configure(2) do |config|
   # Forward Fiddler2 port
   config.vm.network "forwarded_port", guest: 8888, host: 8888
 
+  # not really needed, but since openssh is installed in this basebox, why not make it available?
+  config.ssh.username = "IEUser"
+  config.ssh.guest_port = 22
+  config.ssh.port = 8889
+  config.vm.network "forwarded_port", guest: 22, host: 8889
+
   config.vm.provider "virtualbox" do |vb|
     vb.gui = true
     vb.linked_clone = true
